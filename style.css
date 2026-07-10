@@ -1121,7 +1121,32 @@ a {
 }
 
 .dog-size {
-  font-size: 58px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 72px;
+  margin-bottom: 6px;
+}
+
+.dog-size img {
+  width: auto;
+  object-fit: contain;
+}
+
+.dog-size--small img {
+  height: 44px;
+}
+
+.dog-size--medium img {
+  height: 56px;
+}
+
+.dog-size--large img {
+  height: 68px;
+}
+
+.featured .dog-size img {
+  filter: brightness(0) invert(1);
 }
 
 .serving-card p {
@@ -1133,7 +1158,28 @@ a {
 }
 
 .serving-card strong {
+  display: block;
   font-size: 20px;
+  margin-top: 8px;
+}
+
+.serving-card small {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.featured small {
+  color: #d4ded7;
+}
+
+.serving-cbd-note {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green);
 }
 
 .fine-print {
