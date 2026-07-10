@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Calm Canine crunchy pumpkin and peanut butter dog treats made for calm moments, comfort, and everyday balance." />
-  <title>Calm Canine | Calm Starts With a Treat</title>
+  <meta name="description" content="Calm Canine natural pumpkin and peanut butter wellness treats crafted to support calm moments, gentle comfort, and everyday balance for dogs of all ages." />
+  <title>Calm Canine | Calm Starts With Everyday Comfort</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -17,13 +17,19 @@
       <span class="brand-mark">🐾</span>
       <span>CALM CANINE</span>
     </a>
-    <nav>
+    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <a href="#about">About</a>
       <a href="#benefits">Benefits</a>
       <a href="#guide">Serving Guide</a>
       <a href="#gallery">Gallery</a>
+      <a class="nav-mobile-cta" href="#shop">Shop Calm</a>
     </nav>
-    <a class="nav-cta" href="#shop">Shop Calm</a>
+    <div class="header-actions">
+      <a class="nav-cta" href="#shop">Shop Calm</a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </header>
 
   <main id="top">
@@ -34,8 +40,8 @@
       </div>
       <div class="hero-copy reveal">
         <p class="eyebrow">RELAXATION & COMFORT FOR DOGS</p>
-        <h1>Calm starts with<br><em>one happy bite.</em></h1>
-        <p class="hero-text">A crunchy pumpkin and peanut butter treat made with simple ingredients to support calm moments, relaxation, and everyday balance.</p>
+        <h1>Calm starts with<br><em>everyday comfort.</em></h1>
+        <p class="hero-text">A natural pumpkin and peanut butter wellness treat crafted to support calm moments, gentle comfort, and everyday balance for dogs of all ages.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#shop">Treat Your Pup</a>
           <a class="btn btn-ghost" href="#about">See What’s Inside</a>
@@ -49,16 +55,20 @@
 
       <div class="hero-product reveal" data-tilt>
         <div class="halo"></div>
-        <div class="product-stage" tabindex="0" aria-label="Hover to see happy dog moments">
-          <img class="product-main" src="assets/calm-canine-pouch.png" alt="Calm Canine dog treats pouch" />
-          <div class="video-orbit">
-            <article class="dog-widget w1"><div class="moving-poster dog-a"></div><span>Quiet time</span></article>
-            <article class="dog-widget w2"><div class="moving-poster dog-b"></div><span>Happy walks</span></article>
-            <article class="dog-widget w3"><div class="moving-poster dog-c"></div><span>Cozy naps</span></article>
-            <article class="dog-widget w4"><div class="moving-poster dog-d"></div><span>Easy evenings</span></article>
-            <article class="dog-widget w5"><div class="moving-poster dog-e"></div><span>Balanced days</span></article>
+        <div class="product-stage" tabindex="0" aria-label="Explore calm dog moments">
+          <div class="product-showcase">
+            <img class="product-main" src="assets/calm-canine-pouch.png" alt="Calm Canine dog treats pouch" />
+            <div class="hover-note desktop-only">Hover for the calm journey</div>
           </div>
-          <div class="hover-note">Hover for happy dog moments</div>
+          <p class="moments-cue mobile-only">Swipe to explore calm moments</p>
+          <div class="video-orbit" role="list" aria-label="Calm moments">
+            <article class="dog-widget w1" role="listitem"><video class="dog-clip" src="assets/quite-time.mp4" poster="assets/quite-time.png" muted loop playsinline aria-hidden="true"></video><span>Quiet time</span><small>For peaceful downtime &amp; quiet relaxation</small></article>
+            <article class="dog-widget w2" role="listitem"><video class="dog-clip" src="assets/happy-walks.mp4" poster="assets/happy-walks.png" muted loop playsinline aria-hidden="true"></video><span>Happy walks</span><small>For outdoor adventures &amp; active days</small></article>
+            <article class="dog-widget w3" role="listitem"><video class="dog-clip" src="assets/cozy-naps.mp4" poster="assets/cozy-naps.png" muted loop playsinline aria-hidden="true"></video><span>Cozy naps</span><small>For deep rest &amp; afternoon calm</small></article>
+            <article class="dog-widget w4" role="listitem"><video class="dog-clip" src="assets/easy-evenings.mp4" poster="assets/easy-evenings.png" muted loop playsinline aria-hidden="true"></video><span>Easy evenings</span><small>For calm nights &amp; easy wind-downs</small></article>
+            <article class="dog-widget w5" role="listitem"><video class="dog-clip" src="assets/balanced-days.mp4" poster="assets/balanced-days.png" muted loop playsinline aria-hidden="true"></video><span>Balanced days</span><small>For everyday routines &amp; steady balance</small></article>
+            <article class="dog-widget w6" role="listitem"><video class="dog-clip" src="assets/gentle-comfort.mp4" poster="assets/gentle-comfort.png" muted loop playsinline aria-hidden="true"></video><span>Gentle comfort</span><small>For everyday aches &amp; anxious moments</small></article>
+          </div>
         </div>
       </div>
       <div class="scroll-cue">SCROLL <span>↓</span></div>
