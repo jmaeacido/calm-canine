@@ -218,3 +218,32 @@ if(galleryMoments.length){
     });
   }
 }
+
+const shopVisual = document.querySelector("[data-shop-tilt]");
+const shopSection = document.querySelector(".shop-section");
+
+if(shopVisual && finePointer.matches){
+  shopVisual.addEventListener("mousemove", e=>{
+    const r = shopVisual.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    const stage = shopVisual.querySelector(".shop-product-stage");
+    if(stage){
+      stage.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 8}deg) translateZ(12px)`;
+    }
+  });
+  shopVisual.addEventListener("mouseleave", ()=>{
+    const stage = shopVisual.querySelector(".shop-product-stage");
+    if(stage) stage.style.transform = "";
+  });
+}
+
+if(shopSection && shopVisual && !reducedMotion.matches){
+  const shopParallax = ()=>{
+    const rect = shopSection.getBoundingClientRect();
+    const progress = 1 - Math.min(1, Math.max(0, (rect.top + rect.height * 0.5) / (window.innerHeight + rect.height * 0.5)));
+    shopVisual.style.transform = `translateY(${progress * -18}px)`;
+  };
+  shopParallax();
+  window.addEventListener("scroll", ()=>window.requestAnimationFrame(shopParallax), {passive: true});
+}
