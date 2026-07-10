@@ -155,3 +155,21 @@ videoOrbit?.addEventListener("scroll", ()=>{
     });
   });
 },{passive:true});
+
+const ecsSection = document.querySelector(".ecs-section");
+const ecsVideo = document.querySelector(".ecs-video");
+
+if(ecsSection && ecsVideo){
+  const ecsObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        ecsVideo.play().catch(()=>{});
+      }else{
+        ecsVideo.pause();
+        ecsVideo.currentTime = 0;
+      }
+    });
+  },{threshold: 0.35});
+
+  ecsObserver.observe(ecsSection);
+}
