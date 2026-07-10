@@ -173,3 +173,48 @@ if(ecsSection && ecsVideo){
 
   ecsObserver.observe(ecsSection);
 }
+
+const gallerySection = document.querySelector(".gallery-section");
+const galleryMoments = gallerySection ? [...gallerySection.querySelectorAll("[data-gallery-moment]")] : [];
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const playGalleryClip = (clip)=>{
+  if(reducedMotion.matches) return;
+  clip.play().catch(()=>{});
+};
+
+const pauseGalleryClip = (clip)=>{
+  clip.pause();
+  clip.currentTime = 0;
+};
+
+if(galleryMoments.length){
+  galleryMoments.forEach(card=>card.setAttribute("tabindex", "0"));
+
+  if(finePointer.matches){
+    galleryMoments.forEach(card=>{
+      const clip = card.querySelector(".gallery-clip");
+      if(!clip) return;
+      card.addEventListener("mouseenter", ()=>playGalleryClip(clip));
+      card.addEventListener("mouseleave", ()=>pauseGalleryClip(clip));
+      card.addEventListener("focusin", ()=>playGalleryClip(clip));
+      card.addEventListener("focusout", ()=>pauseGalleryClip(clip));
+    });
+  }else{
+    const galleryObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const clip = entry.target.querySelector(".gallery-clip");
+        if(!clip) return;
+        if(entry.isIntersecting && entry.intersectionRatio >= 0.45){
+          playGalleryClip(clip);
+        }else{
+          pauseGalleryClip(clip);
+        }
+      });
+    },{threshold: [0, 0.45, 0.7]});
+
+    galleryMoments.forEach(card=>{
+      galleryObserver.observe(card);
+    });
+  }
+}
