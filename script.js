@@ -66,11 +66,31 @@ if(navToggle && header){
 const productStage = document.querySelector(".product-stage");
 const productShowcase = document.querySelector(".product-showcase");
 const videoOrbit = document.querySelector(".video-orbit");
+const momentsDots = document.querySelector(".moments-dots");
+const momentDotEls = momentsDots ? [...momentsDots.querySelectorAll("span")] : [];
 const clips = productStage ? [...productStage.querySelectorAll(".dog-clip")] : [];
 const widgets = productStage ? [...productStage.querySelectorAll(".dog-widget")] : [];
 
 const playClips = ()=>clips.forEach(v=>v.play().catch(()=>{}));
 const pauseClips = ()=>clips.forEach(v=>{v.pause();v.currentTime=0});
+
+const setActiveMoment = (activeWidget)=>{
+  const activeIndex = widgets.indexOf(activeWidget);
+  widgets.forEach(widget=>{
+    const isCenter = widget === activeWidget;
+    widget.classList.toggle("is-centered", isCenter);
+    const video = widget.querySelector(".dog-clip");
+    if(!video) return;
+    if(isCenter) video.play().catch(()=>{});
+    else{
+      video.pause();
+      video.currentTime = 0;
+    }
+  });
+  momentDotEls.forEach((dot, index)=>{
+    dot.classList.toggle("is-active", index === activeIndex);
+  });
+};
 
 if(productStage){
   productStage.addEventListener("mouseenter", ()=>{ if(finePointer.matches) playClips(); });
@@ -99,26 +119,15 @@ const syncCarouselVideos = ()=>{
 
   carouselObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
-      const video = entry.target.querySelector(".dog-clip");
-      if(!video) return;
       if(entry.isIntersecting && entry.intersectionRatio >= .72){
-        entry.target.classList.add("is-centered");
-        video.play().catch(()=>{});
-      }else{
-        entry.target.classList.remove("is-centered");
-        video.pause();
-        video.currentTime = 0;
+        setActiveMoment(entry.target);
       }
     });
   },{root:videoOrbit,threshold:[0,.72,1]});
 
   widgets.forEach(widget=>carouselObserver.observe(widget));
 
-  const firstClip = widgets[0]?.querySelector(".dog-clip");
-  if(firstClip){
-    widgets[0].classList.add("is-centered");
-    firstClip.play().catch(()=>{});
-  }
+  if(widgets[0]) setActiveMoment(widgets[0]);
 };
 
 syncCarouselVideos();
@@ -142,17 +151,7 @@ videoOrbit?.addEventListener("scroll", ()=>{
         best = widget;
       }
     });
-    widgets.forEach(widget=>{
-      const isCenter = widget === best && bestRatio > .7;
-      widget.classList.toggle("is-centered", isCenter);
-      const video = widget.querySelector(".dog-clip");
-      if(!video) return;
-      if(isCenter) video.play().catch(()=>{});
-      else{
-        video.pause();
-        video.currentTime = 0;
-      }
-    });
+    if(best && bestRatio > .7) setActiveMoment(best);
   });
 },{passive:true});
 
@@ -238,7 +237,7 @@ if(shopVisual && finePointer.matches){
   });
 }
 
-if(shopSection && shopVisual && !reducedMotion.matches){
+if(shopSection && shopVisual && !reducedMotion.matches && !mobileLayout.matches){
   const shopParallax = ()=>{
     const rect = shopSection.getBoundingClientRect();
     const progress = 1 - Math.min(1, Math.max(0, (rect.top + rect.height * 0.5) / (window.innerHeight + rect.height * 0.5)));
@@ -246,4 +245,7 @@ if(shopSection && shopVisual && !reducedMotion.matches){
   };
   shopParallax();
   window.addEventListener("scroll", ()=>window.requestAnimationFrame(shopParallax), {passive: true});
+  mobileLayout.addEventListener("change", ()=>{
+    if(mobileLayout.matches) shopVisual.style.transform = "";
+  });
 }
