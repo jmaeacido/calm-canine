@@ -250,7 +250,7 @@ a {
 /* Hero product */
 .hero-product {
   position: relative;
-  min-height: 700px;
+  min-height: 820px;
   display: grid;
   place-items: center;
   perspective: 1000px;
@@ -261,8 +261,8 @@ a {
 .halo {
   position: absolute;
   z-index: 0;
-  width: 510px;
-  height: 510px;
+  width: 560px;
+  height: 560px;
   border-radius: 50%;
   background: linear-gradient(145deg, #d8e7a4, #fff8dd);
   filter: blur(2px);
@@ -280,9 +280,10 @@ a {
 .product-stage {
   position: relative;
   z-index: 1;
-  width: 520px;
-  height: 700px;
-  margin-top: -20px;
+  width: 600px;
+  height: 780px;
+  margin-top: -10px;
+  margin-bottom: 40px;
   display: grid;
   place-items: center;
   transition: transform 0.25s;
@@ -305,49 +306,49 @@ a {
 
 .w1 {
   --ox: 0px;
-  --oy: -252px;
+  --oy: -338px;
   --px: 0px;
-  --py: 139px;
+  --py: 186px;
   --delay: 0.3s;
 }
 
 .w2 {
-  --ox: 218px;
-  --oy: -142px;
-  --px: -120px;
-  --py: 78px;
+  --ox: 241px;
+  --oy: -169px;
+  --px: -133px;
+  --py: 93px;
   --delay: 0.9s;
 }
 
 .w3 {
-  --ox: -218px;
-  --oy: -142px;
-  --px: 120px;
-  --py: 78px;
+  --ox: -241px;
+  --oy: -169px;
+  --px: 133px;
+  --py: 93px;
   --delay: 0.6s;
 }
 
 .w4 {
-  --ox: 218px;
-  --oy: 142px;
-  --px: -120px;
-  --py: -78px;
+  --ox: 241px;
+  --oy: 169px;
+  --px: -133px;
+  --py: -93px;
   --delay: 1.5s;
 }
 
 .w5 {
-  --ox: -218px;
-  --oy: 142px;
-  --px: 120px;
-  --py: -78px;
+  --ox: -241px;
+  --oy: 169px;
+  --px: 133px;
+  --py: -93px;
   --delay: 1.2s;
 }
 
 .w6 {
   --ox: 0px;
-  --oy: 252px;
+  --oy: 338px;
   --px: 0px;
-  --py: -139px;
+  --py: -186px;
   --delay: 1.8s;
 }
 
@@ -378,8 +379,8 @@ a {
 .product-main {
   position: relative;
   z-index: 5;
-  max-height: 475px;
-  max-width: 338px;
+  max-height: 450px;
+  max-width: 320px;
   filter:
     drop-shadow(0 36px 44px rgba(0, 0, 0, 0.24))
     drop-shadow(0 12px 24px rgba(40, 75, 55, 0.14));
@@ -488,21 +489,32 @@ a {
   .hero-product:has(.product-stage:focus-within) .halo {
     animation-play-state: paused;
     transform: scale(1.08);
-    width: 548px;
-    height: 548px;
+    width: 600px;
+    height: 600px;
     box-shadow:
       inset 0 0 100px rgba(255, 255, 255, 0.92),
       0 34px 100px rgba(40, 75, 55, 0.18);
   }
 
+  .product-stage:hover .video-orbit,
+  .product-stage:focus-within .video-orbit {
+    z-index: 6;
+  }
+
   .product-stage:hover .product-main,
   .product-stage:focus-within .product-main {
-    transform: translateY(-8px) scale(1.05) rotate(-1deg);
+    transform: translateY(-6px) scale(1.02) rotate(-1deg);
   }
 
   .product-stage:hover .hover-note,
   .product-stage:focus-within .hover-note {
     opacity: 0;
+  }
+
+  .product-stage:hover .dog-widget,
+  .product-stage:focus-within .dog-widget {
+    z-index: 6;
+    pointer-events: auto;
   }
 
   .product-stage:hover .w1,
@@ -529,8 +541,8 @@ a {
 .hero-product:has(.product-stage.journey-active) .halo {
   animation-play-state: paused;
   transform: scale(1.08);
-  width: 548px;
-  height: 548px;
+  width: 600px;
+  height: 600px;
   box-shadow:
     inset 0 0 100px rgba(255, 255, 255, 0.92),
     0 34px 100px rgba(40, 75, 55, 0.18);
@@ -1200,6 +1212,7 @@ footer p {
     max-width: 100%;
     height: auto;
     margin-top: 0;
+    margin-bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: stretch;
