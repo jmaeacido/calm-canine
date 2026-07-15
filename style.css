@@ -1333,8 +1333,22 @@ a {
 
 .gallery-media--treats {
   background:
-    radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.72), transparent 42%),
-    linear-gradient(155deg, #f8f3e8 0%, #e8dcc4 48%, #d4c4a8 100%);
+    radial-gradient(ellipse 75% 60% at 50% 40%, rgba(61, 84, 48, 0.55), transparent 68%),
+    radial-gradient(circle at 78% 18%, rgba(217, 149, 45, 0.14), transparent 36%),
+    linear-gradient(165deg, #243528 0%, #152018 48%, #0e1410 100%);
+}
+
+.gallery-treats-glow {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 72%;
+  height: 58%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 210, 150, 0.22) 0%, transparent 70%);
+  filter: blur(18px);
+  pointer-events: none;
 }
 
 .gallery-clip,
@@ -1345,10 +1359,18 @@ a {
   transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
+.gallery-card--treats {
+  background: #152018;
+  border-color: rgba(185, 211, 107, 0.14);
+}
+
 .gallery-media--treats img {
+  position: relative;
+  z-index: 1;
   object-fit: contain;
-  padding: 18% 12% 28%;
-  filter: drop-shadow(0 18px 28px rgba(23, 36, 28, 0.16));
+  object-position: center 36%;
+  padding: 4% 2% 18%;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.55));
 }
 
 .gallery-shade {
@@ -1362,9 +1384,27 @@ a {
 }
 
 .gallery-media--treats .gallery-shade {
+  z-index: 1;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 40%),
-    linear-gradient(0deg, rgba(23, 36, 28, 0.45) 0%, transparent 58%);
+    linear-gradient(180deg, rgba(14, 20, 16, 0.15) 0%, transparent 36%),
+    linear-gradient(0deg, rgba(8, 12, 9, 0.78) 0%, rgba(8, 12, 9, 0.2) 42%, transparent 68%);
+}
+
+.gallery-card--treats:hover {
+  box-shadow:
+    0 28px 60px rgba(14, 20, 16, 0.35),
+    0 0 0 1px rgba(185, 211, 107, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.gallery-card--treats .gallery-tag {
+  background: rgba(255, 253, 248, 0.95);
+  color: var(--green);
+}
+
+.gallery-card--treats .gallery-note {
+  color: rgba(247, 242, 232, 0.9);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
 }
 
 .gallery-card:hover .gallery-clip,
