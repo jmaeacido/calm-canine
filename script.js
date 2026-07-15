@@ -16,7 +16,6 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const heroBgVideo = document.querySelector(".hero-bg-video");
 if(heroBgVideo){
   const syncHeroBgVideo = ()=>{
-    heroBgVideo.playbackRate = 0.45;
     if(reducedMotion.matches){
       heroBgVideo.pause();
       return;
