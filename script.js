@@ -108,10 +108,35 @@ const setActiveMoment = (activeWidget)=>{
 };
 
 if(productStage){
-  productStage.addEventListener("mouseenter", ()=>{ if(finePointer.matches) playClips(); });
-  productStage.addEventListener("focusin", ()=>{ if(finePointer.matches) playClips(); });
-  productStage.addEventListener("mouseleave", ()=>{ if(finePointer.matches) pauseClips(); });
-  productStage.addEventListener("focusout", ()=>{ if(finePointer.matches) pauseClips(); });
+  const setOrbitActive = (active)=>{
+    if(mobileLayout.matches) return;
+    productStage.classList.toggle("is-active", active);
+  };
+
+  productStage.addEventListener("mouseenter", ()=>{
+    if(finePointer.matches){
+      setOrbitActive(true);
+      playClips();
+    }
+  });
+  productStage.addEventListener("focusin", ()=>{
+    if(finePointer.matches){
+      setOrbitActive(true);
+      playClips();
+    }
+  });
+  productStage.addEventListener("mouseleave", ()=>{
+    if(finePointer.matches){
+      setOrbitActive(false);
+      pauseClips();
+    }
+  });
+  productStage.addEventListener("focusout", (e)=>{
+    if(finePointer.matches && !productStage.contains(e.relatedTarget)){
+      setOrbitActive(false);
+      pauseClips();
+    }
+  });
 }
 
 if(productShowcase){
@@ -130,7 +155,7 @@ const syncCarouselVideos = ()=>{
     return;
   }
 
-  productStage?.classList.remove("journey-active");
+  productStage?.classList.remove("journey-active", "is-active");
 
   carouselObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
