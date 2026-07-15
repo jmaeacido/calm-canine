@@ -11,6 +11,22 @@ reveals.forEach(el=>observer.observe(el));
 
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 const mobileLayout = window.matchMedia("(max-width: 1000px)");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+const heroBgVideo = document.querySelector(".hero-bg-video");
+if(heroBgVideo){
+  const syncHeroBgVideo = ()=>{
+    heroBgVideo.playbackRate = 0.45;
+    if(reducedMotion.matches){
+      heroBgVideo.pause();
+      return;
+    }
+    heroBgVideo.play().catch(()=>{});
+  };
+  syncHeroBgVideo();
+  heroBgVideo.addEventListener("loadedmetadata", syncHeroBgVideo);
+  reducedMotion.addEventListener("change", syncHeroBgVideo);
+}
 
 const stage = document.querySelector("[data-tilt]");
 if(stage && finePointer.matches){
@@ -175,7 +191,6 @@ if(ecsSection && ecsVideo){
 
 const gallerySection = document.querySelector(".gallery-section");
 const galleryMoments = gallerySection ? [...gallerySection.querySelectorAll("[data-gallery-moment]")] : [];
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const playGalleryClip = (clip)=>{
   if(reducedMotion.matches) return;
