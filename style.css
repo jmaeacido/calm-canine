@@ -602,43 +602,6 @@ a {
   transform: translateY(-8px) scale(1.05) rotate(-1deg);
 }
 
-.running-dogs {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  opacity: 0.09;
-  pointer-events: none;
-}
-
-.dog {
-  position: absolute;
-  font-size: 70px;
-  animation: runAcross 14s linear infinite;
-}
-
-.dog-1 {
-  top: 16%;
-  animation-delay: -2s;
-}
-
-.dog-2 {
-  top: 72%;
-  animation-delay: -8s;
-  font-size: 86px;
-}
-
-.dog-3 {
-  top: 44%;
-  animation-delay: -11s;
-  font-size: 56px;
-}
-
-.dog-4 {
-  top: 86%;
-  animation-delay: -5s;
-  font-size: 52px;
-}
-
 .scroll-cue {
   position: absolute;
   left: 50%;
@@ -1996,16 +1959,6 @@ footer p {
 @keyframes float {
   50% {
     transform: translateY(-15px);
-  }
-}
-
-@keyframes runAcross {
-  from {
-    transform: translateX(-160px);
-  }
-
-  to {
-    transform: translateX(calc(100vw + 160px));
   }
 }
 
